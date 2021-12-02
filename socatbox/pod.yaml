@@ -1,0 +1,18 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: socatbox
+  labels:
+    app: socatbox
+spec:
+  containers:
+  - name: socatbox
+    image: alpine/socat
+    args:
+      - "-d"
+      - "-d"
+      - "tcp-listen:6379,fork,reuseaddr"
+      - "tcp:10.128.2.97:6379"
+    imagePullPolicy: IfNotPresent
+  restartPolicy: Always
